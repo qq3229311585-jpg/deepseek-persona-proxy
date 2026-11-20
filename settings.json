@@ -1,0 +1,24 @@
+{
+  "default_model": "教学模式",
+  "max_tokens_cap": 32000,
+  "aliases": {
+    "deepseek-flash": "教学模式",
+    "deepseek-chat": "教学模式"
+  },
+  "models": {
+    "教学模式": {
+      "upstream": "deepseek-flash",
+      "effort": "high",
+      "strip_tools": true,
+      "persona_extra": "mode-teach.txt"
+    },
+    "行动模式": {
+      "upstream": "deepseek-flash",
+      "effort": "high",
+      "persona_extra": "mode-action.txt"
+    }
+  },
+  "knowledge_files": [
+    "ui-tableplus.txt"
+  ]
+}

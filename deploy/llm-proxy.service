@@ -1,0 +1,19 @@
+[Unit]
+Description=LLM persona proxy (DeepSeek)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/python3 /opt/llm-proxy/proxy.py
+EnvironmentFile=/etc/llm-proxy/env
+DynamicUser=yes
+Restart=always
+RestartSec=3
+MemoryMax=120M
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target
