@@ -1,12 +1,12 @@
 ## TablePlus 界面速查(只在对话开头附带一次)
 来源:TablePlus 官方文档,加上对用户真实界面的截图核对。用户的界面是中英混合的:大部分按钮是英文(Items、Data、Structure、Index、Message、Details),部分是中文(过滤器、列、+ 行、查找字段、添加)。讲的时候英文名和中文意思一起说。快捷键是 macOS 的。
 
-**用户连的数据库**:状态条显示是 MariaDB 10.11.18(通过 SSH 连到一台服务器)。MariaDB 和 MySQL 绝大多数用法相同,但有细节差别,回答涉及版本差异时要以 MariaDB 10.11 为准。比如 int(11) 括号里的显示宽度,MySQL 8.0.17 起已弃用,但 MariaDB 10.11 里仍然会显示;服务器是 Linux,表名区分大小写。
+**用户连的数据库**:状态条会显示数据库类型和版本(例如「MariaDB 10.11」或「MySQL 8.0」)。MariaDB 和 MySQL 绝大多数用法相同,但有细节差别,回答涉及版本差异时,要以状态条显示的那个为准,拿不准就问用户连的是哪个。比如 int(11) 括号里的显示宽度,MySQL 8.0.17 起已弃用,但 MariaDB 10.11 里仍然会显示。服务器如果是 Linux,表名区分大小写。(自用时可以在这里写上自己实际连的数据库,回答会更贴合。)
 
 **窗口布局**
-- 最左边一列图标:同一个窗口里打开的几个数据库(比如 db01、db02),点图标切换。
+- 最左边一列图标:同一个窗口里打开的几个数据库(比如 shop、blog),点图标切换。
 - 工具栏(窗口最顶上),从左到右:左侧栏开关;Connection 连接(插头图标,⌘⇧K);放弃(圆圈叉)、预览(眼睛)、提交(带箭头的列表图标)三个连在一起的图标(⌘⇧Delete / ⌘⇧P / ⌘S),没有待提交的改动时是灰色的;Safe Mode 安全模式(锁图标);Database 切换数据库(圆柱图标,⌘K);写着 SQL 的按钮是新开 SQL 编辑器(⌘E);中间一长条绿色的是状态条;铃铛是 Notifications 通知;旋转箭头是 Reload 刷新(⌘R);柱状图图标是 Metrics;⌘ 图标是 Command 全局搜索(⌘P);最右边两个图标分别显示或隐藏底部的控制台日志和右侧栏。
-- 状态条显示当前连接的情况,格式类似「MariaDB 10.11.18 : SSH : 连接名 : 当前数据库 : 当前打开的表或查询」,右边的「0 B/s」是网络速度。点它能看连接详情,断线时点它会重连。绿色表示这个连接设置的状态颜色。
+- 状态条显示当前连接的情况,格式类似「MariaDB 10.x : SSH : 连接名 : 当前数据库 : 当前打开的表或查询」,右边的「0 B/s」是网络速度。点它能看连接详情,断线时点它会重连。绿色表示这个连接设置的状态颜色。
 - 左侧栏有三个标签:Items(Functions 函数、Tables 表;点表名打开,点小三角展开看列)、Queries(保存的 SQL)、History(执行过的 SQL)。搜索框 ⌘⇧F。右键表:Open in new tab、Open structure、Copy Script As(Creation 建表语句 / Drop / Truncate / Select top 100)、Clone 复制表、Truncate 清空、Delete 删除。左下角的 + 是新建表。
 - 打开一张表后,窗口底部有三个标签:Data(行数据,⌃⌘[)、Structure(表结构,⌃⌘])、Index(索引)。
 - 右侧栏有两个标签:Details 和 Assistant(AI 助手)。Assistant 底部的输入框下面,显示当前用的服务商和模型(用户这里是「Deepseek」加「教学模式」或「行动模式」),点它可以切换。点中一行时,Details 列出这一行每个字段,可以直接改,顶部「查找字段」搜字段名,按空格键显示或隐藏右侧栏;没选行时显示这张表的大小和注释。
@@ -15,7 +15,7 @@
 **Data 标签**:底部栏从左到右是 Data、Structure、Index 三个标签,接着是「+ 行」新增一行(⌘I)、「过滤器」(⌘F)、「列」(显示或隐藏列)、「1-7 of 7 rows」和翻页箭头。每页默认 300 行,点翻页箭头中间的设置可改 Limit 和 Offset。双击单元格直接改;点列头排序(第一次降序,再点升序,第三次取消);右键单元格 Set Value 可设 NULL、DEFAULT、EMPTY、NOW();⌘D 复制行;选中行按 Delete 删除。
 **Structure 标签**(已对照真实界面):顶部一行是 Name(表名)、Primary(主键,显示成蓝色小标签)和「Search for column...」搜字段。下面的表格每一行是表的一个字段,从左到右的列依次是:# 序号、column_name(字段名)、data_type(数据类型,如 int(11)、varchar(50))、character_set(字符集)、collation(排序规则)、is_nullable(能否为空,NO 就是 NOT NULL)、check(CHECK 约束条件)、column_default(默认值)、extra(额外属性,如 auto_increment 自增)、foreign_key(外键,格子里有个箭头)、comment(注释)。表格很宽,要向右滚动才能看全。有上下小箭头的格子(data_type、is_nullable、column_default)点一下可以从菜单里选值。每一行最左边的小点是拖动把手,可以拖动调整字段顺序。
 Structure 底部栏从左到右:Data、Structure、Index 三个标签,「+ 列」新增字段(⌘I),Triggers 触发器,DDL 查看这张表的 CREATE TABLE 语句。改字段:双击要改的格子;删字段:选中后按 Delete;改完都要按 ⌘S 提交才生效。建外键:点字段 foreign_key 格子里的箭头。
-**Index 标签**(已对照真实界面核实):它和 Structure 一样,也是一张表格,顶部有 Name(表名)和「Search for index...」搜索框。表格只有四列,从左到右依次是:index_name(索引的名字)、index_algorithm(索引的实现方式,MySQL 里几乎都是 BTREE,即 B+ 树)、is_unique(TRUE 表示这个索引不允许重复值,FALSE 表示允许重复)、column_name(这个索引建在哪一列上)。每一行是一个索引。举例:用户的 user 表有两行——第一行 index_name 是 username、BTREE、TRUE、column_name 是 username,意思是在 username 这一列上有个不许重复的索引(建表时给 username 加了 UNIQUE,系统用字段名给索引起了名);第二行 index_name 是 PRIMARY、BTREE、TRUE、column_name 是 id,这就是主键,主键在数据库里本身就是一个名字固定叫 PRIMARY 的唯一索引。格子里有上下小箭头,点一下能从菜单选值。这一页底部栏是 Data、Structure、Index 三个标签,接着是「+ Index」(新建索引)和 Checks(管 CHECK 约束)。
+**Index 标签**(已对照真实界面核实):它和 Structure 一样,也是一张表格,顶部有 Name(表名)和「Search for index...」搜索框。表格只有四列,从左到右依次是:index_name(索引的名字)、index_algorithm(索引的实现方式,MySQL 里几乎都是 BTREE,即 B+ 树)、is_unique(TRUE 表示这个索引不允许重复值,FALSE 表示允许重复)、column_name(这个索引建在哪一列上)。每一行是一个索引。举例:一张 user 表的 Index 页有两行——第一行 index_name 是 username、BTREE、TRUE、column_name 是 username,意思是在 username 这一列上有个不许重复的索引(建表时给 username 加了 UNIQUE,系统用字段名给索引起了名);第二行 index_name 是 PRIMARY、BTREE、TRUE、column_name 是 id,这就是主键,主键在数据库里本身就是一个名字固定叫 PRIMARY 的唯一索引。格子里有上下小箭头,点一下能从菜单选值。这一页底部栏是 Data、Structure、Index 三个标签,接着是「+ Index」(新建索引)和 Checks(管 CHECK 约束)。
 
 **修改数据的流程(很重要)**:在界面里做的所有修改(改单元格、加行、删行、改表结构、建表),都先只是暂存、高亮显示,不会立刻进数据库。要按提交(⌘S)才真正写入;⌘⇧P 预览将要执行的 SQL;⌘⇧Delete 放弃全部改动。在 SQL 编辑器里运行的语句则是直接发给服务器执行的。Safe Mode 有五档:Silent Mode 不警告;Alert Mode 1 每次发查询前警告;Alert Mode 2 除了 SELECT、EXPLAIN、SHOW 外警告;Safe Mode 1、2 则要输入密码确认(2 同样放过只读查询)。
 

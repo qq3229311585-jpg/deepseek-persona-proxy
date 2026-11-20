@@ -89,3 +89,5 @@ TablePlus ──HTTPS──▶ nginx /llm/ ──▶ proxy.py(127.0.0.1:8766) �
 - `persona.txt` 里关于语气和格式的原则,参考了 Anthropic 公开的 Claude 对话提示词中的相关段落,按中文和这个场景**用自己的话重写**,没有照搬原文。
 - `mode-teach.txt` 里的教学方法,改写自 Anthropic 的 `learn` 技能(Apache License 2.0),文件里有出处说明。
 - `ui-tableplus.txt` 来自 [TablePlus 官方文档](https://docs.tableplus.com/) 的整理,加上真实界面截图的核对,同样是自己的话。
+
+> 公开版的 `prompts/ui-tableplus.txt` 去掉了作者个人环境的细节(具体数据库版本、服务器等)。自用时建议在「用户连的数据库」那一段写上自己实际连的数据库,AI 的回答会更贴合。许可和出处说明见 `NOTICE`。

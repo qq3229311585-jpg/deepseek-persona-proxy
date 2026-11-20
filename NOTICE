@@ -1,0 +1,14 @@
+deepseek-persona-proxy
+
+本项目的 prompts/mode-teach.txt 中的教学方法部分,改写(翻译并按场景调整)自
+Anthropic 的 "learn" 技能。该技能以 Apache License, Version 2.0 授权:
+https://www.apache.org/licenses/LICENSE-2.0
+
+改动说明:改写为中文;结合初学者学数据库的场景做了取舍;增加了篇幅规定和
+讲解方法清单。原作品的版权和许可声明归其权利人所有。
+
+prompts/persona.txt 中关于语气和格式的原则,参考了 Anthropic 公开的 Claude
+对话提示词的相关段落,用自己的话重写,没有复制原文。
+
+prompts/ui-tableplus.txt 整理自 TablePlus 官方文档 (https://docs.tableplus.com/)
+和对真实界面的观察,用自己的话写成。TablePlus 是其权利人的商标。
